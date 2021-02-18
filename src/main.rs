@@ -1,10 +1,10 @@
 fn input() -> i32 {
-    let mut input_text = String::new();
+    let mut input_text: String = String::new();
     std::io::stdin()
         .read_line(&mut input_text)
         .expect("failed to read from stdin");
 
-    let trimmed = input_text.trim();
+    let trimmed: &str = input_text.trim();
     match trimmed.parse::<i32>() {
         Ok(num) => {
             println!("Число: {}", num);
@@ -39,9 +39,9 @@ fn solve_euclids_algorithm(number1: i32, number2: i32) -> EuclidsAlgorithmOutput
         output.integers.push(0);
         output.x.push(output.x[output.x.len() - 2]);
         output.y.push(output.y[output.y.len() - 2]);
-        num1 = num1 + num2;
-        num2 = num1 - num2;
-        num1 = num1 - num2;
+        num1 = num1 ^ num2;
+		num2 = num1 ^ num2;
+		num1 = num1 ^ num2;
     }
 
     while num2 != 0 {
@@ -59,7 +59,9 @@ fn solve_euclids_algorithm(number1: i32, number2: i32) -> EuclidsAlgorithmOutput
 }
 
 fn print_euclids_algorithm_table(solved_table: EuclidsAlgorithmOutput) {
-    print!("\n\t\t    A\t    B{}  НОД", "\t".repeat(solved_table.remainders.len() - 3));
+    let mut width: usize = solved_table.remainders.len();
+    width = if width < 4 { 0 } else { width - 4 };
+    print!("\n\t\t    A\t    B{}\t  НОД", "\t".repeat(width));
     print!("\nОстатки:\t");
     for num in solved_table.remainders {
         print!("|  {}\t", num);
@@ -84,6 +86,6 @@ fn main() {
     let number1: i32 = input();
     println!("Введите второе число: ");
     let number2: i32 = input();
-    print!("Результат: ");
+    println!("Результат: ");
     print_euclids_algorithm_table(solve_euclids_algorithm(number1, number2));
 }
