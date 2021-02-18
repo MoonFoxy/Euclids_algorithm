@@ -59,21 +59,22 @@ fn solve_euclids_algorithm(number1: i32, number2: i32) -> EuclidsAlgorithmOutput
 }
 
 fn print_euclids_algorithm_table(solved_table: EuclidsAlgorithmOutput) {
-    println!();
+    print!("\n\t\t    A\t    B{}  НОД", "\t".repeat(solved_table.remainders.len() - 3));
+    print!("\nОстатки:\t");
     for num in solved_table.remainders {
-        print!("{}\t", num);
+        print!("|  {}\t", num);
     }
-    print!("\n \t \t");
+    print!("\nЦелые делители:\t|\t|\t");
     for num in solved_table.integers {
-        print!("{}\t", num);
+        print!("|  {}\t", num);
     }
-    println!();
+    print!("\nX:\t\t");
     for num in solved_table.x {
-        print!("{}\t", num);
+        print!("|  {}\t", num);
     }
-    println!();
+    print!("\nY:\t\t");
     for num in solved_table.y {
-        print!("{}\t", num);
+        print!("|  {}\t", num);
     }
     println!();
 }
