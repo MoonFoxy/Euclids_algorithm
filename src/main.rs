@@ -49,8 +49,8 @@ fn solve_euclids_algorithm(number1: i32, number2: i32) -> EuclidsAlgorithmOutput
         let integer: i32 = (num1 - remainder) / num2;
         output.remainders.push(remainder);
         output.integers.push(integer);
-        output.x.push(output.x[output.x.len() - 1] - integer * output.x[output.x.len() - 2]);
-        output.y.push(output.y[output.y.len() - 1] - integer * output.y[output.y.len() - 2]);
+        output.x.push(output.x[output.x.len() - 2] - integer * output.x[output.x.len() - 1]);
+        output.y.push(output.y[output.y.len() - 2] - integer * output.y[output.y.len() - 1]);
         num1 = output.remainders[output.remainders.len() - 2];
         num2 = output.remainders[output.remainders.len() - 1];
     }
