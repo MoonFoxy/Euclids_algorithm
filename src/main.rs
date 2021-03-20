@@ -2,7 +2,7 @@ fn input() -> i32 {
     let mut input_text: String = String::new();
     std::io::stdin()
         .read_line(&mut input_text)
-        .expect("failed to read from stdin");
+        .expect("Failed to read from stdin");
 
     let trimmed: &str = input_text.trim();
     match trimmed.parse::<i32>() {
